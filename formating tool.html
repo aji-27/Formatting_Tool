@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lab Formatting Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Lab Report</h1>
+        <form id="labForm">
+            <div class="input-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="input-group">
+                <label for="labTitle">Lab Title:</label>
+                <input type="text" id="labTitle" name="labTitle">
+            </div>
+            <div class="input-group">
+                <label for="date">What day is it:</label>
+                <input type="text" id="date" name="date">
+            </div>
+            <div class="input-group">
+                <label for="description">What does this program do?</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="howManyPin">How much pins did you use?</label>
+                <input type="number" id="howManyPin" name="howManyPin">
+            </div>
+            <div class="input-group">
+                <button type="button" onclick="generateReport()">Generate Report</button>
+            </div>
+            <div id="formattedOutput">
+                <!-- Formatted output will be displayed here -->
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function generateReport() {
+            const name = document.getElementById("name").value;
+            const labTitle = document.getElementById("labTitle").value;
+            const date = document.getElementById("date").value;
+            const description = document.getElementById("description").value;
+            const howManyPin = document.getElementById("howManyPin").value;
+
+            let formattedOutput = `// ${name}<br>`;
+            formattedOutput += `// ${labTitle}<br>`;
+            formattedOutput += `// ${date}<br>`;
+            formattedOutput += `//<br>`;
+            formattedOutput += `// description: ${description}<br>`;
+            formattedOutput += `//<br>`;
+            formattedOutput += `// pin usage:<br>`;
+
+            for (let i = 0; i < howManyPin; i++) {
+                const pinNum = prompt("Which pin did you use?");
+                const pinUse = prompt("What did you plug there?");
+                formattedOutput += `// ${pinNum} - ${pinUse}<br>`;
+            }
+
+            document.getElementById("formattedOutput").innerHTML = formattedOutput;
+        }
+
+    </script>
+</body>
+
+</html>
